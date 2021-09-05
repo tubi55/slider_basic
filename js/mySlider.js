@@ -11,6 +11,7 @@
 */
 var btns = $(".btns li");
 var panel = $(".panel");
+var circle = $("#circle");
 var speed = 1000;
 
 btns.on("click",function(e){
@@ -21,11 +22,16 @@ btns.on("click",function(e){
     activation(this);
 });
 
-function activation(el){  
-    console.log("called!!!");
+function activation(el){   
     var i = $(el).index();
     panel.animate({marginLeft: -100*i+"%"},speed);
     
     btns.removeClass("on");
     btns.eq(i).addClass("on");
+
+    rotation(i+1);
+}
+function rotation(index){
+    circle.removeClass();
+    circle.addClass("rot"+index);
 }
