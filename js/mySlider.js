@@ -1,28 +1,22 @@
-$(".btns li").on("click",function(e){
+/*
+    1.코드안에 상수값은 모두 전역변수 처리
+    2.이벤트와 기능을 분리 (이벤트문+함수)
+    3.이미 활성화된 버튼에 재이벤트 방지
+*/
+var btns = $(".btns li");
+var panel = $(".panel");
+var speed = 1000;
+
+btns.on("click",function(e){
     e.preventDefault();
-    var i = $(this).index();
-    $(".panel").animate({marginLeft: -100*i+"%"},1000);
-    
-    $(".btns li").removeClass("on");
-    $(".btns li").eq(i).addClass("on");
+    activation(this);
 });
 
-/*
-1.css에서 #slider프레임을 제외한 안쪽의 크기를 퍼센트로 설정
-2.js에서 위의 모션 구문을 퍼센트로 변경
-*/
-
-/*
-    0 ==> 0% (-100*0)+"%"
-    1 ==> -100% (-100*1)+"%"
-    2 ==> -200% (-100*2)+"%"
-    3 ==> -300% (-100*3)+"%"
-    4 ==> -400% (-100*4)+"%"
-*/
-
-
-
-
-
-
-
+function activation(el){
+    console.log("you called me again!!!");
+    var i = $(el).index();
+    panel.animate({marginLeft: -100*i+"%"},speed);
+    
+    btns.removeClass("on");
+    btns.eq(i).addClass("on");
+}
